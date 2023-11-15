@@ -1760,3 +1760,9 @@ Completed 200 OK in 176ms (Views: 154.2ms | ActiveRecord: 0.7ms | Allocations: 6
 Started GET "/movies/6" for 127.0.0.1 at 2023-11-08 05:21:16 -0500
 Processing by MoviesController#show as HTML
   Parameters: {"id"=>"6"}
+  [1m[36mMovie Load (0.9ms)[0m  [1m[34mSELECT "movies".* FROM "movies" WHERE "movies"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/movies_controller.rb:9:in `show'
+  Rendering layout layouts/application.html.haml
+  Rendering movies/show.html.haml within layouts/application
+  Rendered movies/show.html.haml within layouts/application (Duration: 91.0ms | Allocations: 1223607)
+  Rendered layout layouts/application.html.haml (Duration: 130.0ms | Allocations: 1620322)
