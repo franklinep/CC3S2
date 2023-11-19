@@ -41,13 +41,20 @@ end
 ~~~
 
 Antes de continuar con la comprobacion de consola rails, tenemos que realizar la migracion para asi poder interactuar con la base de datos y realizar cambios. Entonces, generaremos los archivos de migracion para la tabla mymoviegoers con el siguiente comando `rails generate migration CreateMoviegoers`.
-![imagen1](/assets/imagen1.png)
+
+![imagen1](assets/imagen1.png)
+
 Como podemos vissular, se creo el archivo siguiente.
-![imagen2](/assets/imagen2.png)
+
+![imagen2](assets/imagen2.png)
+
 Finalmente, nos faltaria ejecutar la migracion.
-![imagen3](/assets/imagen3.png)
+
+![imagen3](assets/imagen3.png)
+
 Ahora si, veremos los resultados en consola. Para esto crearemos un nuevo registro de pelicula donde a proposito colocamos sus datos para que realize o ejecute las validaciones.
-![imagen4](/assets/imagen4.png)
+
+![imagen4](assets/imagen4.png)
 
 
 Pasaremos ahora a explicar el siguiente codigo:
@@ -121,7 +128,8 @@ Extraemos el titulo, donde observaremos que se ha modificado correctamente.
 ~~~
 m.title  # => "Star Wars"
 ~~~
-![imagen5](/assets/imagen5.png)
+
+![imagen5](assets/imagen5.png)
 
 
 Ahora finalmente para esta seccion veremos el apartado de **filtros** en Ruby on Rails. Un filtro es un método que evalúa condiciones antes de ejecutar una acción o establecer condiciones comunes para múltiples acciones. Si las condiciones no se cumplen, el filtro puede *interrumpir* la ejecución, mostrando una plantilla de vista o redirigiendo a otra acción. Si las condiciones son satisfactorias, la acción continúa su ejecución normal y es responsable de proporcionar una respuesta. Veremos el codigo proporcionado.
@@ -160,18 +168,23 @@ end
 
 Durante la siguiente seccion vamos *autenticar a los usuarios* a través de un proveedor externo utilizando la gema **OmniAuth**, que ofrece una interfaz unificada para diversos proveedores de inicio de sesión único (SSO). Se detallarán los ajustes necesarios en *rutas*, *controladores* y *vistas* para implementar OmniAuth en la aplicación.
 * `routes.rb`
-![imagen6](/assets/imagen6.png)
+
+![imagen6](assets/imagen6.png)
 
 
 * `session_controller.rb`: Vamos a crear el controlador para que pueda manejar las sesiones.
-![imagen7](/assets/imagen7.png)
+
+![imagen7](assets/imagen7.png)
 
 Para utilizar la autenticación a través de proveedores como Twitter, debemos registrarnos en la aplicación en el sitio del proveedor para obtener `API_KEY`y `API_SECRET`.Vamos a ilustrar cómo crear una cuenta de desarrollador en Twitter. 
-![imagen8](/assets/imagen8.png)
-![imagen9](/assets/imagen9.png)
+
+![imagen8](assets/imagen8.png)
+
+![imagen9](assets/imagen9.png)
 
 Muy bien, entonces ahora que tenemos nuestras llaves, ahora vamos a modificar en el archivo de configuracion `initializers/omniauth.rb`.
-![imagen10](/assets/imagen10.png)
+
+![imagen10](assets/imagen10.png)
 
 
 ***Pregunta***: *Debes tener cuidado para evitar crear una vulnerabilidad de seguridad. ¿Qué sucede si un atacante malintencionado crea un envío de formulario que intenta modificar params[:moviegoer][:uid] o params[:moviegoer][:provider] (campos que solo deben modificarse mediante la lógica de autenticación) publicando campos de formulario ocultos denominados params[moviegoer][uid] y así sucesivamente?.*
@@ -218,11 +231,15 @@ Porsupuesto, esto se traduce como un codigo mas limpio y comprensible donde los 
 
 
 (a): Crea y aplica esta migración para crear la tabla Reviews. Las claves foraneas del nuevo modelo están relacionadas con las tablas `movies` y `moviegoers` existentes por convención sobre la configuración.
+
 ![imagen11](assets/imagen11.png)
+
 luego editamos `db/migrate/*_create_reviews.rb` con el codigo proporcionado.
+
 ![imagen12](assets/imagen12.png)
 
 (b) Coloca este nuevo modelo de revisión en `app/models/review.rb`.
+
 ![imagen13](assets/imagen13.png)
 
 
@@ -233,16 +250,19 @@ has_many :reviews
 ~~~
 
 ![imagen14](assets/imagen14.png)
+
 ![imagen16](assets/imagen16.png)
 
 Finalmente, vamos a realizar la migracion.
 ~~~
 rails db:migrate
 ~~~
+
 ![imagen15](assets/imagen15.png)
 
 # Asociaciones Indirectas
 Vamos ahora agregar `has_many :moviegoers, :through => :reviews` al modelo `Movie`, para establecer una conexión a través de las críticas. Posteriormente, al llamar `movie.moviegoers`, puedes obtener los usuarios asociados para una película específica.
+
 ![imagen17](assets/imagen17.png)
 
 ***Pregunta:*** *¿Qué indica el siguiente código SQL ?*
