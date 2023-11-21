@@ -216,10 +216,10 @@ class Charizard extends Pokemon {
 
 ~~~javascript
 // Ejemplo
-const charizardInstance = new Charizard(100, 30, 20, "Lanzallamas");
-charizardInstance.flight();
-console.log(charizardInstance.canFly());
-console.log(charizardInstance.fight());
+const myCharizard = new Charizard(100, 30, 20, "Lanzallamas");
+myCharizard.flight();
+console.log(myCharizard.canFly());
+console.log(myCharizard.fight());
 ~~~
 ![1](img/1.png)
 
