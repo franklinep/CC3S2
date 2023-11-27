@@ -3,37 +3,45 @@
 ## Migracion
 Observamos este error al ejecutar el servidor
 
-![a](img/0.png)
+![f0](img/f0.png)
 
 Esto nos indica que no existe la tabla moviegoers, claro porque no hemos creado la migración. Para ello vamos a ejecutar los siguientes comandos.
 
-![b](img/0_1.png)
-![c](img/0_2.png)
+![f1](img/f1.png)
+
+![f2](img/f2.png)
 
 Ahora si, una vez aplicada la migracion a la base de datos ejecutamos el servidor y verificamos que todo este correcto.
-![d](img/0_3.png)
+
+![f3](img/f3.png)
 
 ## Vista edit
 Creamos nuestro archivo `edit.html.erb`, y pegamos el codigo previamente usado.
-![e](img/0_4.png)
-Pero observamos que al querer editar una pelicula nos aparece el siguiente error.
-![f](img/0_5.png)
-Esto quiere decir que no existe el metodo `update_attributes`, ya que esta funcion es precaria. Para la solucion, realizamos el siguiente cambio al metodo `update`.
-![g](img/0_6.png)
-Ahora deberia funcionar todo correctamente, verificams en la siguiente imagen.
 
-Ahora procedemos a seguir los pasos de la tarea.
+![f4](img/f4.png)
+
+Pero observamos que al querer editar una pelicula nos aparece el siguiente error.
+
+![f5](img/f5.png)
+
+Esto quiere decir que no existe el metodo `update_attributes`, ya que esta funcion es precaria. Para la solucion, realizamos el siguiente cambio al metodo `update`.
+
+![f6](img/f6.png)
+
+Ahora deberia funcionar todo correctamente.
 
 ## Paso 1
 
-### **Creamos nuestra vista parcial**
+### Creamos nuestra vista parcial
 
 Creamos la vista parcial `views/movies/_movie.html.erb`, y pegamos el codigo proporcionado.
 
-![2](img/2.png)
+![f7](img/f7.png)
 
-### **Modificamos nuestro controlador**
-![1](img/1.png)
+### Modificamos nuestro controlador
+
+![f8](img/f8.png)
+
 Como vemos, se modifico agregando la linea 
 ~~~
 render(:partial => 'movie', :object => @movie) if request.xhr?
@@ -83,44 +91,72 @@ $(MoviePopup.setup);
 ~~~
 
 ***Explicación***:
-Basicamente creamos nuestro objeto `MoviePopup` con tres funciones, las cuales configuramos para mostrar informacion de peliculas en una ventana emergente en una pagina web.
-**setup:** Este método configura la funcionalidad básica. Crea un elemento de div oculto (popupDiv) al final del cuerpo de la página para mostrar la información de la película. Luego, establece un evento de clic en los enlaces dentro de un elemento con el id movies. Cuando se hace clic en estos enlaces, llama a la función getMovieInfo.
+Basicamente creamos nuestro objeto `MoviePopup` con las siguientes funciones, las cuales configuramos para mostrar informacion de peliculas en una ventana emergente en una pagina web.
 
-**getMovieInfo:** Este método se ejecuta cuando se hace clic en un enlace de película. Utiliza Ajax para realizar una solicitud GET al URL del enlace de la película. Si la solicitud tiene éxito, llama a la función showMovieInfo para mostrar la información de la película. Si hay un error, muestra una alerta de error.
+* **setup:** Este método configura la funcionalidad básica. Crea un elemento de div oculto `(popupDiv)` al final del cuerpo de la página para mostrar la información de la película. Luego, establece un evento de clic en los enlaces dentro de un elemento con el id `movies`. Cuando se hace clic en estos enlaces, llama a la función `getMovieInfo`.
 
-**showMovieInfo:** Esta función se llama cuando la solicitud Ajax tiene éxito. Centra un elemento de div (#movieInfo) en la pantalla y lo llena con la información de la película obtenida de la solicitud. También hace que un enlace con el id closeLink dentro de este elemento oculto pueda cerrar la ventana emergente al hacer clic. Retorna false para evitar la acción predeterminada del enlace.
+* **getMovieInfo:** Este método se ejecuta cuando se hace clic en un enlace de película. Utiliza Ajax para realizar una solicitud GET al URL del enlace de la película. Si la solicitud tiene éxito, llama a la función `showMovieInfo` para mostrar la información de la película. Si hay un error, muestra una alerta de error.
 
-**hideMovieInfo:** Este método se llama cuando se hace clic en el enlace de cierre (#closeLink). Oculta el elemento #movieInfo para cerrar la ventana emergente y retorna false para evitar la acción predeterminada del enlace.
+* **showMovieInfo:** Esta función se llama cuando la solicitud Ajax tiene éxito. Se centra un elemento de div `(#movieInfo)` en la pantalla y lo llena con la información de la película obtenida de la solicitud. También hace que un enlace con el id `closeLink` dentro de este elemento oculto pueda cerrar la ventana emergente al hacer clic. Retorna false para evitar la acción predeterminada del enlace.
 
-Finalmente tenemos *$(MoviePopup.setup)*; que llama al método `setup` cuando el documento HTML y todos los recursos asociados se han cargado. Esto inicia la configuración inicial y establece los eventos necesarios para mostrar y ocultar la información de la película.
+* **hideMovieInfo:** Este método se llama cuando se hace clic en el enlace de cierre `(#closeLink)`. Oculta el elemento `#movieInfo` para cerrar la ventana emergente y retorna false para evitar la acción predeterminada del enlace.
+
+Finalmente tenemos *$(MoviePopup.setup)*; que llama al método `setup`. Esto inicia la configuración inicial y establece los eventos necesarios para mostrar y ocultar la información de la película.
 
 ### layouts
+
 Realizamos el cambio en el archivo `application.html.erb`.
-![h](img/application_layout_view.png)
+
+![f9](img/f9.png)
+
+Se añadieron las siguientes lineas de codigo en nuestro `<head></head>`.
+* Esta etiqueta indica que se incluye dinamicamente el archivo javascript de jQuery en nuestra pagina. 
+~~~ 
+<%= javascript_include_tag 'https://code.jquery.com/jquery-3.6.4.min.js' %> 
+~~~
+
+* Esta etiqueta indica que se incluye dinamicamente la hoja de estilos `application.css` en nuestra pagina.
+~~~
+<%= stylesheet_link_tag 'application'%>
+~~~
+
+* Esta etiqueta indica que se incluye dinámicamente el archivo JavaScript 'movie_popup.js' en nuestra pagina.
+~~~
+<%= javascript_include_tag 'movie_popup' %>
+~~~
+
+
 
 ### Config
 Cuando intentamos ejeecutar el servidor nos indica el siguinte error, donde nos dice que el archivo `movie_popup.js` no fue declarado para poder ser precompilado en produccion.
-![i](img/error_movie_popup.png)
+
+![f10](img/f10.png)
+
 Para esto tenemos que agregar el siguiente link a la configuracion de nuestro proyecto (`app/assets/config/manifest.js`).
-![j](img/sol_movie_popup.png)
+
+![f11](img/f11.png)
 
 ### Estilos
 Ocurren algunos trucos interesantes de CSS en el código anterior Puesto que el objetivo es que la ventana emergente flote, podemos utilizar CSS para especificar la posición como absolute añadiendo el siguiente código en app/assets/stylesheets/application.css :
 
-![k](img/estilos.png)
+![f12](img/f12.png)
 
 Mostramos los resultados en la siguiente imagen.
 
-![l](img/resultados.png)
+![f13](img/f13.png)
 
-## Parte 3
+## Paso 3
+
 Conviene mencionar una advertencia a considerar cuando se usa JavaScript para crear nuevos elementos dinámicamente en tiempo de ejecución, aunque no surgió en este ejemplo en concreto. Sabemos que $(.myClass).on(click,func) registra func como el manejador de eventos de clic para todos los elementos actuales que coincidan con la clase CSS myClass. Pero si se utiliza JavaScript para crear nuevos elementos que coincidan con myClass después de la carga inicial de la página y de la llamada inicial a on, dichos elementos no tendrán el manejador asociado, ya que on sólo puede asociar manejadores a elementos existentes.
 
 **¿Cuál es solución que brinda jQuery a este problema?**
+
 Para realizar a la solucion a este problema, se puede utilizar la delegación de eventos que permite asociar un manejador de eventos a un elemento padre existente que ya está en el DOM y que contiene los elementos secundarios dinámicamente creados.
 En lugar de vincular el manejador de eventos directamente a los elementos con la clase específica, podemos añadir el siguiente codigo.
+
 ```$(document).on('click', '.myClass', function(){...});```
-Este indica que en vez de elegir directamente los elementos que tienen la clase `.myClass`, optamos por emplear `$(document).on('click', '.myClass', function() {...})` para transferir la responsabilidad del evento al documento. Esto implica que cualquier clic en un elemento que tiene la clase .myClass dentro del documento será procesado por la función especificada.
+
+Este indica que en vez de elegir directamente los elementos que tienen la clase `.myClass`, optamos por emplear `$(document).on('click', '.myClass', function() {...})` para transferir la responsabilidad del evento al documento. Esto quiere decir que cualquier clic en un elemento que tiene la clase `.myClass` dentro del documento será procesado por la función especificada.
 
 
 
