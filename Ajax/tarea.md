@@ -3,23 +3,23 @@
 ## Migracion
 Observamos este error al ejecutar el servidor
 
-![](img/0.png)
+![a](img/0.png)
 
 Esto nos indica que no existe la tabla moviegoers, claro porque no hemos creado la migración. Para ello vamos a ejecutar los siguientes comandos.
 
-![](img/0_1.png)
-![](img/0_2.png)
+![b](img/0_1.png)
+![c](img/0_2.png)
 
 Ahora si, una vez aplicada la migracion a la base de datos ejecutamos el servidor y verificamos que todo este correcto.
-![](img/0_3.png)
+![d](img/0_3.png)
 
 ## Vista edit
 Creamos nuestro archivo `edit.html.erb`, y pegamos el codigo previamente usado.
-![](img/0_4.png)
+![e](img/0_4.png)
 Pero observamos que al querer editar una pelicula nos aparece el siguiente error.
-![](img/0_5.png)
+![f](img/0_5.png)
 Esto quiere decir que no existe el metodo `update_attributes`, ya que esta funcion es precaria. Para la solucion, realizamos el siguiente cambio al metodo `update`.
-![](img/0_6.png)
+![g](img/0_6.png)
 Ahora deberia funcionar todo correctamente, verificams en la siguiente imagen.
 
 Ahora procedemos a seguir los pasos de la tarea.
@@ -96,22 +96,22 @@ Finalmente tenemos *$(MoviePopup.setup)*; que llama al método `setup` cuando el
 
 ### layouts
 Realizamos el cambio en el archivo `application.html.erb`.
-![](img/application_layout_view.png)
+![h](img/application_layout_view.png)
 
 ### Config
 Cuando intentamos ejeecutar el servidor nos indica el siguinte error, donde nos dice que el archivo `movie_popup.js` no fue declarado para poder ser precompilado en produccion.
-![](img/error_movie_popup.png)
+![i](img/error_movie_popup.png)
 Para esto tenemos que agregar el siguiente link a la configuracion de nuestro proyecto (`app/assets/config/manifest.js`).
-![](img/sol_movie_popup.png)
+![j](img/sol_movie_popup.png)
 
 ### Estilos
 Ocurren algunos trucos interesantes de CSS en el código anterior Puesto que el objetivo es que la ventana emergente flote, podemos utilizar CSS para especificar la posición como absolute añadiendo el siguiente código en app/assets/stylesheets/application.css :
 
-![](img/estilos.png)
+![k](img/estilos.png)
 
 Mostramos los resultados en la siguiente imagen.
 
-![](img/resultados.png)
+![l](img/resultados.png)
 
 ## Parte 3
 Conviene mencionar una advertencia a considerar cuando se usa JavaScript para crear nuevos elementos dinámicamente en tiempo de ejecución, aunque no surgió en este ejemplo en concreto. Sabemos que $(.myClass).on(click,func) registra func como el manejador de eventos de clic para todos los elementos actuales que coincidan con la clase CSS myClass. Pero si se utiliza JavaScript para crear nuevos elementos que coincidan con myClass después de la carga inicial de la página y de la llamada inicial a on, dichos elementos no tendrán el manejador asociado, ya que on sólo puede asociar manejadores a elementos existentes.
