@@ -3,23 +3,23 @@
 ## Migracion
 Observamos este error al ejecutar el servidor
 
-![0](img/0.png)
+![](img/0.png)
 
 Esto nos indica que no existe la tabla moviegoers, claro porque no hemos creado la migración. Para ello vamos a ejecutar los siguientes comandos.
 
-![0](img/0_1.png)
-![0](img/0_2.png)
+![](img/0_1.png)
+![](img/0_2.png)
 
 Ahora si, una vez aplicada la migracion a la base de datos ejecutamos el servidor y verificamos que todo este correcto.
-![0](img/0_3.png)
+![](img/0_3.png)
 
 ## Vista edit
 Creamos nuestro archivo `edit.html.erb`, y pegamos el codigo previamente usado.
-![0](img/0_4.png)
+![](img/0_4.png)
 Pero observamos que al querer editar una pelicula nos aparece el siguiente error.
-![0](img/0_5.png)
+![](img/0_5.png)
 Esto quiere decir que no existe el metodo `update_attributes`, ya que esta funcion es precaria. Para la solucion, realizamos el siguiente cambio al metodo `update`.
-![0](img/0_6.png)
+![](img/0_6.png)
 Ahora deberia funcionar todo correctamente, verificams en la siguiente imagen.
 
 Ahora procedemos a seguir los pasos de la tarea.
