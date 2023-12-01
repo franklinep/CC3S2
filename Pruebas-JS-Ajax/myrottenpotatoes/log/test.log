@@ -1,0 +1,18 @@
+Started GET "/specs?reporters=console&spec" for 127.0.0.1 at 2023-12-01 12:27:22 -0500
+Processing by JasmineRails::SpecRunnerController#index as HTML
+  Parameters: {"reporters"=>"console", "spec"=>nil}
+  Rendering layout /home/franklin/.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/jasmine-rails-0.15.0/app/views/layouts/jasmine_rails/spec_runner.html.erb
+  Rendering /home/franklin/.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/jasmine-rails-0.15.0/app/views/jasmine_rails/spec_runner/index.html.erb within layouts/jasmine_rails/spec_runner
+  Rendered /home/franklin/.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/jasmine-rails-0.15.0/app/views/jasmine_rails/spec_runner/index.html.erb within layouts/jasmine_rails/spec_runner (Duration: 2.9ms | Allocations: 431)
+Compiling jasmine.css to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/jasmine.css
+Compiling jasmine-specs.css to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/jasmine-specs.css
+Compiling jasmine.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/jasmine.js
+Compiling boot.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/boot.js
+Compiling jasmine-html.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/jasmine-html.js
+Compiling json2.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/json2.js
+Compiling boot0.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/boot0.js
+Compiling jasmine-console-shims.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/jasmine-console-shims.js
+Compiling jasmine-console-reporter.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/jasmine-console-reporter.js
+Compiling jasmine-specs.js to /mnt/d/CC3S2-Ubuntu/Pruebas-JS-Ajax/myrottenpotatoes/tmp/jasmine/assets/jasmine-specs.js
+  Rendered layout /home/franklin/.rbenv/versions/3.0.2/lib/ruby/gems/3.0.0/gems/jasmine-rails-0.15.0/app/views/layouts/jasmine_rails/spec_runner.html.erb (Duration: 3841.7ms | Allocations: 52462)
+Completed 200 OK in 3901ms (Views: 3852.1ms | ActiveRecord: 0.0ms | Allocations: 59225)
