@@ -1,0 +1,12 @@
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
+gem 'nokogiri'
+gem 'rack', '~> 2.2.4'
+gem 'rspec'
+group :development do
+  gem 'guard'
+end
+# gem 'wdm', '>= 0.1.0' if Gem.win_platform?
+gem 'autotest', '~> 5.0'
+# gem "rails"
