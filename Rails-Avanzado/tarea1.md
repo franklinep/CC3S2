@@ -1,6 +1,6 @@
 # Ruby on Rails - Avanzado
 *by Franklin Espinoza P. 20210135D*
-***ESTE ES UN CAMBIO DE PRUEBA fecha: 30/11/2023 hora: 19:30***
+***MODIFICAR EL ULTIMO COMMIT***
 # Vistas parciales, validaciones y filtros
 Las **vistas parciales** en Ruby on Rails podemos verlos como segmentos de vistas reutilizables que se pueden renderizar en otras vistas. Las vistas parciles se diferencias por empezar su nombre por un guion bajo `_movie.html.erb`. Crearemos la vista parcial `_movies.html.erb` en el directorio `app/views/movies/`, donde copiamos el siguiente codigo:
 ~~~html
