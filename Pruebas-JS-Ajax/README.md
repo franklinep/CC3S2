@@ -8,7 +8,7 @@ Luego vamos a ejecutar el siguiente comando generador de rails `rails generate j
 ![1](img/1.png)
 
 El generador creara el archivo de configuracion llamado `jasmine.yml`, en `spec/javascript/support`. El archivo `jasmine.yml` tiene configuraciones sobre que archivos deberian ser cargados a la hora de cargar la pagina que ejecuta las pruebas. A continuacion, se muestra el contenido del archivo `jasmine.yml`.
-~~~yml
+```yml
 # src_files
 #
 # Return an array of filepaths relative to src_dir to include before jasmine specs.
@@ -153,9 +153,7 @@ boot_files:
 # random: false
 #
 random:
-
-
-~~~
+```
 
 Vamos a crear un archivo de prueba simple `spec/javascripts/basic_check_spec.js` con el codigo proporcionado.
 
@@ -167,5 +165,23 @@ y luego ejecutaremos el comando `rake jasmine` para iniciar un servidor que cont
 
 ***Pregunta:*** ¿Cuáles son los problemas que se tiene cuando se debe probar Ajax?. Explica tu respuesta.
 
-Cuando queremos realizar pruebas utilizando el framework de unidad de testeo, `Jasmine`, para nuestro codigo `AJAX`, existe el problema de asincronia. Este se debe a que como sabemos las llamadas `AJAX` son operaciones asincronas, lo que significa que el ejecutador de pruebas de `Jasmine` puede continuar ejecutandose antes que la llamada `AJAX` se complete. Del mismo modo, como sabemos las pruebas `Jasmine` son generalmente de manera sincronica, por lo que necesitamos asegurar que las pruebas esperen el tiempo suficiente para que las llamadas `AJAX` se completen.
+***Respuesta:*** Cuando queremos realizar pruebas utilizando el framework de unidad de testeo, `Jasmine`, para nuestro codigo `AJAX`, existe el problema de asincronia. Este se debe a que como sabemos las llamadas `AJAX` son operaciones asincronas, lo que significa que el ejecutador de pruebas de `Jasmine` puede continuar ejecutandose antes que la llamada `AJAX` se complete. Del mismo modo, como sabemos las pruebas `Jasmine` son generalmente de manera sincronica, por lo que necesitamos asegurar que las pruebas esperen el tiempo suficiente para que las llamadas `AJAX` se completen.
 
+***Pregunta:*** ¿Qué son los `Stubs`, `Spies` y `fixture` en Jasmine para realizar pruebas de Ajax?
+
+***Respuesta:*** Son herramientas que se utilizan para poder realizar pruebas de manera efectiva. Los `Stubs` son funciones falsas que reemplazan a las reales durante las pruebas, en las pruebas AJAX se pueden utilizar para simular llamadas al servidor y controlar las respuestas. Los `Spies` son funciones que regristran informacion sobre las llamadas, como por ejemplo cuantas veces se llamaron, con que argumentos, etc; en las pruebas AJAX se utilizan para verificar si se llaman correctamente y obtener informacion sobre las llamadas. Lo `Fixture` se utilizan para simular respuestas reales del servidor durante las pruebas de AJAX. Por ejemplo, Podemos cargar datos simulados en lugar de depender del servidor real.
+
+***Pregunta:*** ¿Que hacen las siguientes líneas del código anterior?. ¿Cuál es el papel de spyOn de Jasmine y los stubs en el código dado.
+~~~javascript
+it('calls correct URL', function() {
+      spyOn($, 'ajax');
+      $('#movies a').trigger('click');
+      expect($.ajax.calls.mostRecent().args[0]['url']).toEqual('/movies/1');
+    });
+~~~
+***Respuesta:*** A continuacion, daremos una breve descripcion sobre cada linea.
+* `SpyOn($, 'ajax')`: Se utiliza `SpyOn` para poder realizar un seguimiento al metodo `$.ajax`. Esto nos permitira verificar si una funcion se ha llamado, la cantidad y con que argumento.
+
+* `$('#movies a').trigger('click')`: Simula un click en un enlace dentro del elemento con el ID `movies`.
+
+* `expect($.ajax.calls.mostRecent().args[0]['url']).toEqual('/movies/1')`: Esta linea verifica que la llamada mas reciente a `$.ajax` haya tenido un argumento `url` igual a `'/movies/1'`.
