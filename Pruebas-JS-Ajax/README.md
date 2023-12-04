@@ -352,8 +352,8 @@ En Jasmine, el código de preparación se incluye en un bloque `beforeEach` y se
    });
    ```
 
-4. **Validación Automática con ActiveModel y JavaScript:**
-   Extendí la función de validación en ActiveModel para generar automáticamente código JavaScript que validara las entradas del formulario antes del envío. Podemos ver un ejemplo a continuacion:
+4. **Validación automática con ActiveModel y javascript:**
+   Extendí la función de validación en `ActiveModel` para generar automáticamente código JavaScript que validara las entradas del formulario antes del envío. Podemos ver un ejemplo a continuacion:
 
    ```ruby
    class Movie < ActiveRecord::Base
