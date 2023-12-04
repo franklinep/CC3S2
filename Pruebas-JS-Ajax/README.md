@@ -312,6 +312,66 @@ La función `hideMovieInfo` simplemente oculta el div `#movieInfo`, proporcionan
 ~~~
 En Jasmine, el código de preparación se incluye en un bloque `beforeEach` y se emplea para establecer el entorno requerido antes de cada prueba. En este escenario, carga un fixture HTML simulado que representa la lista de películas. Posterior a cada prueba, se puede utilizar `afterEach` para realizar acciones de limpieza si es necesario, asegurando la independencia entre las pruebas. Este enfoque posibilita simular el entorno que el manejador `getMovieInfo` percibiría al hacer clic en un enlace después de mostrar la lista de películas.
 
+- - -
 
+1. **Métodos de acceso en herencia de prototipos:**
+   Para abordar la limitación de la visibilidad pública de los atributos en la herencia de prototipos, implementé un constructor para objetos `User` en JavaScript.  Este constructor acepta un nombre de usuario y una contraseña, proporcionando un método `checkPassword` para verificar la contraseña sin exponerla directamente. Utilicé clausuras para lograr un nivel básico de privacidad.
+
+   ```javascript
+   function User(username, password) {
+       let _password = password; // Atributo privado
+
+       this.checkPassword = function(inputPassword) {
+           return _password === inputPassword;
+       };
+   }
+   ```
+
+2. **Identificación de filas ocultas:**
+  Aproveché la propiedad `hidden` de HTML5 y seleccioné las filas ocultas mediante el siguiente código:
+
+   ```javascript
+   let filas_ocultas = document.querySelectorAll('#movies .row[hidden]');
+   ```
+
+3. **Menús en cascada con AJAX:**
+   Para crear menús en cascada basados en una asociación `has_many` entre los modelos Rails A y B, diseñé un código AJAX que, al seleccionar una opción en el primer menú (A), solicita y rellena dinámicamente el segundo menú (B) con las opciones correspondientes.
+
+   ```javascript
+   $('#menuA').change(function() {
+       let opcion_seleccionada = $(this).val();
+       $.ajax({
+           type: 'GET',
+           url: '/controller/action', // Ruta para obtener opciones de B
+           data: { optionA: opcion_seleccionada },
+           success: function(data) {
+               // Rellenar dinámicamente el menú B
+               $('#menuB').html(data);
+           }
+       });
+   });
+   ```
+
+4. **Validación Automática con ActiveModel y JavaScript:**
+   Extendí la función de validación en ActiveModel para generar automáticamente código JavaScript que validara las entradas del formulario antes del envío. Podemos ver un ejemplo a continuacion:
+
+   ```ruby
+   class Movie < ActiveRecord::Base
+       validates :title, presence: true, uniqueness: true
+       validates :length, numericality: { greater_than: 0 }
+   end
+   ```
+   
+   El código JavaScript generado.
+
+   ```javascript
+   $('#newMovieForm').submit(function(event) {
+       if (!validateTitle() || !validateLength() || ...) {
+           event.preventDefault(); // Evitar envío del formulario
+           displayValidationMessages(); // Mostrar mensajes de validación
+           highlightInvalidFields(); // Resaltar campos con problemas
+       }
+   });
+   ```
 
 
