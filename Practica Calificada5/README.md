@@ -64,5 +64,30 @@ Le decimos que para cada calificacion, crearemos un checkbox `check_box_tag`.
 
 ![f4](img/f4.png)
 
+4. De la actividad relacionada a BDD e historias de usuario crea definiciones de pasos que te permitan escribir los siguientes pasos en un escenario de RottenPotatoes:
+
+5. 
+
+## Preguntas (Parte 02):
+
+## Preguntas (Parte 03):
+
+1. Describa uno o más patrones de diseño que podrían ser aplicados al diseño del sistema.
+
+Algunos patrones para `ActiveWorkflow`:
+
+* `Patrón Observer`: Dado que "ActiveWorkflow" trabaja con funcionalidades impulsadas por eventos, este patrón es aplicable ya que permite reaccionar a cambios de estado o a la aparición de eventos específicos.
+
+* `Patrón de Agente`: La plataforma utiliza agentes que son servicios autónomos (o microservicios). Estos agentes pueden ser diseñados utilizando el patrón de agente, que actúa de manera independiente o en conjunto para realizar tareas.
+
+* `Patrón de Estrategia`: Para la ejecución periódica y la lógica de negocio agrupada, el patrón de estrategia podría ser utilizado para intercambiar algoritmos de ejecución sin cambiar el código cliente.
+
+2. Dado un sistema simple que responde a una historia de usuario concreta, analice y elija un paradigma de diseño adecuado 
+
+En mi opinion, podemos utilizar el paradigma orientada a servicios (SOA) para `ActiveWorkflow`, ya que esta gestiona y conecta servicios que pueden estar escritos en cualquier lenguaje de programacion, y lo que es una caracteristica principal del paradigma orientada a servicios.
+
+3. Analice y elija una arquitectura software apropiada que se ajuste a una historia de usuario concreta de este sistema. ¿La implementación en el sistema de esa historia de usuario refleja su idea de arquitectura? 
+
+En mi opinion, podemos utilizar la arquitectura basada en microservicios ya que tambien es apliamente utilizada en `ActiveWorkflow`. Cada agente va actuar como un microservicio independiente que puede ser programado, monitoreado y conectado a otros agentes. Esto permite una gran escalabilidad del sistema.
 
 
