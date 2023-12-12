@@ -66,7 +66,51 @@ Le decimos que para cada calificacion, crearemos un checkbox `check_box_tag`.
 
 4. De la actividad relacionada a BDD e historias de usuario crea definiciones de pasos que te permitan escribir los siguientes pasos en un escenario de RottenPotatoes:
 
-5. 
+~~~
+Given the movie "Inception" exists
+And it has 5 reviews
+And its average review score is 3.5
+~~~
+Vamos a utiliza el proyecto proporcionado `BDD_cucumber` para este ejercicio. La linea `Given the movie "Inception" exists` creara una pelicula `Inception` utilizando el metodo `create`.
+~~~ruby
+Given /^the movie "([^"]*)" exists$/ do |movie_title|
+  Movie.create(title: movie_title)
+end
+~~~
+Luego `And it has 5 reviews` este va establecer 5 revisiones a la pelicula utilizando el metodo `update`. 
+~~~ruby
+Given /^it has (\d+) reviews$/ do |review_count|
+  movie = Movie.last
+  movie.update(reviews: review_count.to_i)
+end
+~~~
+Finalmente, `And its average review score is 3.5` este va establecer un puntaje promedio de 3.5 a la pelicula utilizando el metodo `update`.
+~~~ruby
+Given /^its average review score is (\d+\.\d+)$/ do |review_score|
+  movie = Movie.last
+  movie.update(rating: review_score.to_f)
+end
+~~~
+
+5. De la actividad relacionadas a BDD e historias de usuario, supongamos que en RottenPotatoes, en lugar de utilizar seleccionar la calificación y la fecha de estreno, se opta por rellenar el formulario en blanco. Primero, realiza los cambios apropiados al escenario. Enumera las definiciones de pasos a partir que Cucumber invocaría al pasar las pruebas de estos nuevos pasos. (Recuerda: rails generate cucumber:install) 
+
+6. De la actividad relacionadas a BDD e historias de usuario indica una lista de pasos como los de la siguiente figura. Para implementar el siguiente paso: When / I delete the movie: "(.*)"/ do |title|
+
+Vamos a implementar lo siguiente:
+
+`When` se elimine la pelicula.
+~~~ruby
+When /I delete the movie: "(.*)"/ do |title|
+  movie = Movie.find_by(title: title)
+  movie.destroy
+end
+
+Then /I should not see "(.*)" on (.*)/ do |title, path|
+  steps %Q{Given I am on #{path}}
+  expect(page).not_to have_content(title)
+end
+~~~
+`Then` va verificar que la pagina especificada no contiene la cadena de texto `title`.
 
 ## Preguntas (Parte 02):
 
