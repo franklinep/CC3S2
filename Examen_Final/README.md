@@ -194,7 +194,15 @@ Finalmente vamos ejecutar el servidor para visualizar que todo este correcto.
 Claro, esta vacio porque faltaria llenar nuestra base de datos. Para esto vamos ejecutar el siguiente comando y nuevamente ejecutar el servidor.
 
 
-![](img/f22)
+![](img/f23.png)
+
+![](img/f24.png)
+
+Ahora observamos que todo funciona correctamente y se muestra lo esperado!.
+
+
+
+
 
 
 
