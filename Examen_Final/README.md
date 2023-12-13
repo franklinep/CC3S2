@@ -35,5 +35,42 @@ Finalmente, ahora verificamos los cambios en nuestro github
 
 
 ## Pregunta 2
+Digamos que nos dan el modelo de `User` de la siguiente manera:  
 
-Digamos que nos dan el modelo de User de la siguiente manera:  
+```
+class User < ActiveRecord::Base 
+
+    validates :username, :presence => true 
+
+    validate :username_format 
+
+end 
+```
+1. Qué pasa si tenemos `@user` sin nombre de usuario y llamamos a `@user.valid`?? ¿Qué guardará `@user.save`?
+
+Si `@user` no tiene un nombre de usuario y llamamos a @user.valid?, nos va retornar `false` porque la validación de presencia para username no se cumple. Si luego llamamos a `@user.save`, no guardará el objeto en la base de datos porque el objeto no es válido.
+
+2. Implementa `username_format`. Para los propósitos, un nombre de usuario comienza con una letra y tiene como máximo 10 caracteres de largo. Recuerda, las validaciones personalizadas agregan un mensaje a la colección de errores. 
+
+Se muestra a continuacion la implementacion.
+```
+class User < ActiveRecord::Base
+    validates :username, presence: true
+    validate :username_format
+
+    private
+
+    def username_format
+        unless username =~ /\A[a-zA-Z][a-zA-Z0-9_]{,9}\z/
+            errors.add(:username, 'debe comenzar con una letra y tener máximo 10 caracteres de largo')
+        end
+    end
+
+end
+```
+Creamos una funcion privada `username_format`. Usaremos la palabra clave `unless` para validar que si es que se ingresa un usuario el cual no se ajusta con que comienze con una letra y que tenga como maximo 10 caracteres, entonces nos enviara un mensaje de error.
+
+## Pregunta 3
+Recuerda, los filtros nos ayudan a verificar si ciertas condiciones se cumplen antes de permitir que se ejecute una acción del controlador. Para el modelo de User, digamos que queremos verificar si @user era administrador de todos los métodos en AdminController. Completa el método before_filter:check_admin a continuación que verifica si el campo de administrador en @user es verdadero. De lo contrario, redirija a la página admin_login con un mensaje que indica acceso restringido. 
+
+
