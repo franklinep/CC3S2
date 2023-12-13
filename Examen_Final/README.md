@@ -1,4 +1,5 @@
 # Final
+Alumno : @Franklin Espinoza Pari
 ## Parte 1
 ### Pregunta 1
 Produce un conflicto de fusión (merge) en algún repositorio de tus actividades realizadas. Establece los pasos y comandos que usas para resolver un conflicto de fusión en Git. Si intentas git push y falla con un mensaje como : Non-fast-forward (error): failed to push some refs esto significa que algún archivo contiene un conflicto de fusión entre la versión de tu repositorio y la versión del repositorio origen. Para este ejercicio debes presentar el conflicto dado, los pasos y comandos para resolver el problema y las solución. 
@@ -199,6 +200,18 @@ Claro, esta vacio porque faltaria llenar nuestra base de datos. Para esto vamos 
 ![](img/f24.png)
 
 Ahora observamos que todo funciona correctamente y se muestra lo esperado!.
+
+Muy bien ahora prosigamos con las siguientes preguntas :D.
+1. Escribiendo una nueva vista
+
+Vamos a preparar todo el campo de vistas para poder realizar la buena practica TDD. Vamos a luego agregar los botones para poder ir de `search_tmdb`, hacia nuestra vista `index` y del mismo modo al reves. Adicionalmente, anadimos los botones de uso que van a redireccionar entre vistas.
+
+![](img/f25.png)
+
+![](img/f26.png)
+
+
+
 
 
 
