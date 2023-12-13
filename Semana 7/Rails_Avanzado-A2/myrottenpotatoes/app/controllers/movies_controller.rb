@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
 
   def show
     id = params[:id] # recuperamos el ID de la película de la ruta URI
-    byebug
+    #byebug
       @movie = Movie.find(id) # buscar la película por ID única
   end
 
@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
     end
   end
   def edit
-    @movie = Movie.find params[:id]
+    @movie = Movie.find(params[:id])
   end
   def update
     @movie = Movie.find(params[:id])
