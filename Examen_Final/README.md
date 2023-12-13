@@ -100,3 +100,34 @@ end
 Definimos un metodo privado `check_admin`, este quiere decir que no se puede hacer uso del mismo fuera de la clase. Luego vamos a volver a utilizar la palabra clave `unless` donde vamos a verificar que el usuario exsita y ademas que tenga un metodo `admin`. Si estas condiciones no se cumplen, el usuario se redirige a la página de inicio (`redirect_to admin_login_path`) de sesión del administrador con un mensaje de alerta (`alert: 'Acceso restringido.'`).
 
 4.  AJAX (JavaScript y XML asíncronos) es un grupo de herramientas y técnicas para el desarrollo de aplicaciones web asíncronas. El objetivo de AJAX es que la comunicación entre una aplicación y el servidor de datos (es decir, solicitudes HTTP) no interfiera con la experiencia, la visualización y el comportamiento de la aplicación. A continuación, se te proporciona un formulario que simula el inicio de sesión. Comprueba si la combinación de nombre de usuario y contraseña funciona junto con la cuenta, si la hay. Para hacer eso, queremos que se realice una solicitud HTTP POST cuando se envíe este formulario. Escribe tu solución con jQuery y comenta dónde debe ubicarse la función de devolución de llamada (callback). Comprueba tus resultados. 
+
+```
+<form method="POST" id="foo"> 
+
+<input type="text" class="user" /> 
+
+<input type="password" class="pass" /> 
+
+<input type="button" value="Log␣in" id="onSubmit" /> 
+
+</form> 
+
+$("#onSubmit").click(function() { 
+
+# Tu codigo 
+
+}) 
+```
+
+
+5. ¿Cuándo deberías utilizar la metaprogramación basada en eval en lugar de la metaprogramación basada en bloques?. 
+
+Sabemos que la metaprogramacion basada en eval se utiliza para poder evaluar cadenas de texto, y es muy util cuando estamos trabajando con codigo que es generado dinamicamente como cadenas, que por ejemplo cargado de una base de datos. 
+
+Y la metaprogramacion en bloques nos sirve para poder encapsular trozos de codigo que pueden ser almacenados en variables o pasados como argumentos en metodos.
+
+Ahora bien, Cuando debemos usar eval en lugar de bloques? 
+* Cuando el codigo que necesitas ejecutar se genera dinamicamente como una cadena y no puede ser convertida en un bloque de manera practica.
+* Cuando necesitemos evaluar y ejecutar codigo Ruby que esta almacenado como texto, como archivos de configuracion.
+
+Sin embargo, siempre se da preferencia a la metaprogramacion basada en bloques ya que la metaprogramacion basada en eval puede tiene riesgos de seguridad.
