@@ -73,4 +73,30 @@ Creamos una funcion privada `username_format`. Usaremos la palabra clave `unless
 ## Pregunta 3
 Recuerda, los filtros nos ayudan a verificar si ciertas condiciones se cumplen antes de permitir que se ejecute una acción del controlador. Para el modelo de User, digamos que queremos verificar si @user era administrador de todos los métodos en AdminController. Completa el método before_filter:check_admin a continuación que verifica si el campo de administrador en @user es verdadero. De lo contrario, redirija a la página admin_login con un mensaje que indica acceso restringido. 
 
+```
+class AdminController < ApplicationController 
 
+  	    before_filter :check_admin 
+
+      # Completa el codigo 
+```
+
+Solucion, vamos a completar el codigo anterior de la siguiente manera.
+```
+class AdminController < ApplicationController
+    before_action :check_admin
+
+    private
+
+    def check_admin
+        unless @user&.admin?
+            redirect_to admin_login_path, alert: 'Acceso restringido.'
+        end
+    end
+
+end
+```
+
+Definimos un metodo privado `check_admin`, este quiere decir que no se puede hacer uso del mismo fuera de la clase. Luego vamos a volver a utilizar la palabra clave `unless` donde vamos a verificar que el usuario exsita y ademas que tenga un metodo `admin`. Si estas condiciones no se cumplen, el usuario se redirige a la página de inicio (`redirect_to admin_login_path`) de sesión del administrador con un mensaje de alerta (`alert: 'Acceso restringido.'`).
+
+4.  AJAX (JavaScript y XML asíncronos) es un grupo de herramientas y técnicas para el desarrollo de aplicaciones web asíncronas. El objetivo de AJAX es que la comunicación entre una aplicación y el servidor de datos (es decir, solicitudes HTTP) no interfiera con la experiencia, la visualización y el comportamiento de la aplicación. A continuación, se te proporciona un formulario que simula el inicio de sesión. Comprueba si la combinación de nombre de usuario y contraseña funciona junto con la cuenta, si la hay. Para hacer eso, queremos que se realice una solicitud HTTP POST cuando se envíe este formulario. Escribe tu solución con jQuery y comenta dónde debe ubicarse la función de devolución de llamada (callback). Comprueba tus resultados. 
