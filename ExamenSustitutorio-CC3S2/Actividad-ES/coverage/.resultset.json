@@ -1,100 +1,116 @@
 {
   "Cucumber Features": {
     "coverage": {
-      "/home/fespinoza/ExamenSustitutorio-CC3S2/Actividad-ES/app/models/movie.rb": {
+      "/home/fespinoza/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES/app/models/movie.rb": {
         "lines": [
           1,
+          1,
           null,
+          1,
+          0,
           null,
           null,
           null,
           1,
+          0,
+          null,
+          null,
+          1,
+          0,
           null,
           null,
           null
         ]
       },
-      "/home/fespinoza/ExamenSustitutorio-CC3S2/Actividad-ES/app/controllers/application_controller.rb": {
+      "/home/fespinoza/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES/app/controllers/movies_controller.rb": {
         "lines": [
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
           0,
           null,
           null,
+          null,
+          null,
+          1,
+          null,
+          null,
+          null,
+          1,
           0,
-          0
-        ],
-        "branches": {
-        }
+          0,
+          null,
+          0,
+          null,
+          0,
+          0,
+          0,
+          null,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          null,
+          2,
+          null,
+          1,
+          1,
+          null,
+          0,
+          null,
+          null,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          0,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
       },
-      "/home/fespinoza/ExamenSustitutorio-CC3S2/Actividad-ES/app/controllers/movies_controller.rb": {
+      "/home/fespinoza/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES/app/controllers/application_controller.rb": {
         "lines": [
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
+          1,
           null,
           null,
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
       },
-      "/home/fespinoza/ExamenSustitutorio-CC3S2/Actividad-ES/app/helpers/application_helper.rb": {
+      "/home/fespinoza/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES/app/helpers/application_helper.rb": {
         "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
       },
-      "/home/fespinoza/ExamenSustitutorio-CC3S2/Actividad-ES/app/helpers/movies_helper.rb": {
+      "/home/fespinoza/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES/app/helpers/movies_helper.rb": {
         "lines": [
-          0,
-          0
-        ],
-        "branches": {
-        }
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1703681103
+    "timestamp": 1703710455
   }
 }
