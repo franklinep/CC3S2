@@ -1,5 +1,5 @@
 # Parte 01
-
+- - -
 ## Agrega un campo Director a Movies (1 punto)
 
 1. No es necesario agregar los atributos en la clase modelo, ya que estos al ser creados estan implicitos en el mismo.
@@ -48,9 +48,9 @@ A continuacion se muestran los resultados, ejecutando el servidor:
 
 ## Cobertura del código (1 punto)
 
-
+- - -
 # Parte 02
-
+- - -
 ## Preguta 1 (1 punto): ¿Por qué la abstracción de un objeto de formulario pertenece a la capa de presentación y no a la capa de servicios (o inferior)?
 
 - La abstracción de un objeto de formulario pertenece a la capa de presentación porque se refiere a la interacción y manipulación de datos específicos de la interfaz de usuario. La capa de presentación es responsable de recibir y validar la entrada del usuario, y los objetos de formulario se utilizan para representar estos datos y facilitar su procesamiento en la capa de presentación. Los objetos de formulario no están relacionados con la lógica de negocio o el almacenamiento de datos, por lo que su responsabilidad recae en la capa de presentación.
@@ -81,9 +81,53 @@ Esto nos permite rastrear y analizar el proceso de validacion de Active Record, 
 
 ## Pregunta 4 (2 puntos): 
 
+Nos piden crear un one-liner en UNIX que muestre los N primeros archivos en RUby complejos utilizando Flog, y luego que combine esta informacion con la calculadora de churn. Primero tenemos que instalar la gema, ejecutamos el comando `gem install flog` dentro de un repostiorio de trabajo.
+```
+fespinoza@fespinoza:~/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES$ gem install flog
+Fetching path_expander-1.1.1.gem
+Fetching sexp_processor-4.17.0.gem
+Fetching flog-4.8.0.gem
+Fetching ruby_parser-3.20.3.gem
+Successfully installed path_expander-1.1.1
+Successfully installed sexp_processor-4.17.0
+Successfully installed ruby_parser-3.20.3
+Successfully installed flog-4.8.0
+Parsing documentation for path_expander-1.1.1
+Installing ri documentation for path_expander-1.1.1
+Parsing documentation for sexp_processor-4.17.0
+Installing ri documentation for sexp_processor-4.17.0
+Parsing documentation for ruby_parser-3.20.3
+Installing ri documentation for ruby_parser-3.20.3
+Parsing documentation for flog-4.8.0
+Installing ri documentation for flog-4.8.0
+Done installing documentation for path_expander, sexp_processor, ruby_parser, flog after 20 seconds
+4 gems installed
+```
+
+Luego vamos a ver la complejidad de cada archivo en el modelo de nuestro repositorio, para eso vamos a ejecutar el siguietne comando y nos mostrara la salida , donde nos muestra las complejidades 6.8 y 3.4 para nuestro modelo `movie.rb`.
+
+**OUTPUT**
+```
+fespinoza@fespinoza:~/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES$ find app/models -name "*.rb" -exec sh -c 'echo $(flog -s $1) $1' _ {} \;
+6.8: flog total 3.4: flog/method average app/models/movie.rb
+```
+
+Luego vamos a caluclar el churn de cada archivo con Git.
+
+**OUTPUT**
+```
+fespinoza@fespinoza:~/CC3S2/ExamenSustitutorio-CC3S2/Actividad-ES$ find . -name "*.rb" -exec flog {} + | sort -n | tail -n 4
+    26.6: Then#/^the "([^"]*)" field should have no error$/ ./features/step_definitions/web_steps.rb:196-204
+    44.9: Then#/^the "([^"]*)" field should have the error "([^"]*)"$/ ./features/step_definitions/web_steps.rb:165-191
+   158.7: main#none
+   584.3: flog total
+```
+
+El comando `find` `. -name "*.rb" -exec flog {} + | sort -n | tail -n 4 `analiza la complejidad del código de los archivos Ruby en el directorio actual y sus subdirectorios. Muestra los puntajes de complejidad de los métodos `Then#/^the "([^"]*)" field should have no error$/ `y `Then#/^the "([^"]*)" field should have the error "([^"]*)"$/ `en el archivo `web_steps.rb`. También muestra el puntaje de complejidad total de todos los métodos analizados.
+
 - - -
 # Parte 03: Javascript
-
+- - -
 ## Pregunta 1 (2 punto)
 
 Crea varias funciones que te permitirán interactuar con las cookies de la página, incluida la lectura de un valor de cookie por nombre, la creación de una nueva cookie usando un nombre y su configuración para una cantidad determinada de días, y la eliminación de una cookie. 
@@ -202,5 +246,140 @@ El uso de fixtures en las pruebas tiene sus ventajas y desventajas, de las cuale
 * Tenemos que tener cuidado, ya que pueden aumentar la complejidad y la dependencia de las pruebas en los datos de prueba externos.
 * Si cambiamos el esquema de datos por ejemplo, estos van a requerir de una 'mantenimiento' para que vuelva a funcionar correctamente.
 * Si se utilizan conjuntos de datos grandes pueden hacer que las pruebas se vuelvan lentas.
+
+- - -
+# Parte 4: Pruebas y Rspec (3 puntos)
+
+En esta sección, se nos pide llevar a cabo pruebas en el sistema de puntuación de un juego de tenis. Para lograrlo, trabajaremos en un nuevo repositorio denominado `tennis_test`. Vamos a iniciar instalando la gema de Rspec, y vamos a ejecutar el comando `rails generate rspec:install`.
+Ejecutaremos los siguientes comando en orden:
+
+`rails new tennis_test`
+
+Agregamos lo siguiente a nuestro `Gemfile`.
+```ruby
+group :development, :test do
+  gem 'rspec-rails'
+end
+```
+`bundle install`
+
+`rails generate rspec"install`
+
+**Salida**
+
+```
+fespinoza@fespinoza:~/CC3S2/ExamenSustitutorio-CC3S2/tennis_test$ rails generate rspec:install
+      create  .rspec
+      create  spec
+      create  spec/spec_helper.rb
+      create  spec/rails_helper.rb
+```
+Ahora vamos a crear un archivo de pruebas llamado `tennis_score_spec.rb` y pegaremos lo proporcionado en el ejercicio.
+```ruby
+RSpec.describe "TennisScorer" do
+    describe "puntuación básica" do 
+        it "empieza con un marcador de 0-0" 
+        it "hace que el marcador sea 15-0 si el sacador gana un punto" 
+        it "hace que el marcador sea 0-15 si el receptor gana un punto" 
+        it "hace que el marcador sea 15-15 después de que ambos ganen un punto" 
+     end
+ end
+```
+
+Luego, vamos a ejecutar las pruebas con el comando `rspec tennis_score_spec.rb`.
+
+![](img/20.png)
+
+Observamos que las pruebas pueden ser identificadas y se marcan como pendientes. Ahora, procederemos a rellenar nuestra clase "TennisSoccer", incorporando los métodos necesarios. A continuación, se adjunta el código resuelto con los métodos requeridos. Con esto, estamos preparados para llevar a cabo las pruebas.
+
+```ruby
+class TennisScorer
+    PLAYER_MAPPING = { server: :receiver, receiver: :server }
+    SCORE_TRANSLATION = { 0 => 0, 1 => 15, 2 => 30, 3 => 40 }
+  
+    def initialize
+        @default_player = :server
+        @score = { server: 0, receiver: 0 }
+    end
+  
+    # Devuelve la puntuación actual del jugador especificado
+    def obtener_puntuacion(jugador = :server) 
+        otro_jugador = PLAYER_MAPPING[jugador]
+        if @score[jugador] <= 3 && @score[otro_jugador] <= 3
+            if @score[jugador] == @score[otro_jugador] && @score[jugador] == 3
+                'DEUCE' # Empate a 40-40
+            else
+                "#{SCORE_TRANSLATION[@score[:server]]}-#{SCORE_TRANSLATION[@score[:receiver]]}"
+            end
+        elsif @score[jugador] - @score[otro_jugador] >= 2
+            "W-L" # El jugador ha ganado
+        elsif @score[otro_jugador] - @score[jugador] >= 2
+            "L-W" # El jugador ha perdido
+        elsif @score[otro_jugador] >= 3 && @score[jugador] >= 3
+            if @score[jugador] == @score[otro_jugador]
+                "DEUCE" # Empate a 40-40
+            elsif @score[jugador] > @score[otro_jugador]
+                "El sacador tiene ventaja"
+            else
+                "El receptor tiene ventaja"
+            end
+        end
+    end
+  
+    # Aumenta la puntuación del jugador especificado en 1
+    def sumar_punto_a(jugador)
+      @score[jugador] += 1
+    end  
+end
+```
+
+Ahora pasaremos a dar una breve explicacion del codigo anterior:
+
+
+- Este código define una clase `TennisScorer` que realiza un seguimiento de la puntuación en un juego de tenis. Tiene un hash `PLAYER_MAPPING` que asigna los roles de los jugadores, un hash `SCORE_TRANSLATION` que asigna los valores de puntuación a sus descripciones correspondientes, y un método `initialize` que establece la puntuación inicial en 0 para ambos jugadores.
+- El método `obtener_puntuacion` devuelve la puntuación actual para un jugador especificado. Verifica los valores de puntuación y determina la descripción adecuada según las reglas del tenis, como "DEUCE" para un empate a 40-40, "W-L" si el jugador ha ganado, "L-W" si el jugador ha perdido y descripciones para situaciones de ventaja.
+- El método `sumar_punto_a` incrementa la puntuación del jugador especificado en 1.
+
+
+Ahora vamos a proceder a complementar nuestras pruebas, como se vera en el siguiente codigo.
+```ruby
+require_relative "TennisScorer"
+
+RSpec.describe "TennisScorer" do
+    before(:each) do
+        @tnss = TennisScorer.new
+    end
+    describe "puntuación básica" do
+        it "empieza con un marcador de 0-0" do
+            expect(@tnss.score).to eq("0-0")
+        end
+    
+        it "hace que el marcador sea 15-0 si el sacador gana un punto" do
+            @tnss.give_point_to(:saca)
+            expect(@tnss.score).to eq("15-0")
+        end
+    
+        it "hace que el marcador sea 0-15 si el receptor gana un punto" do
+            @tnss.give_point_to(:recibe)
+            expect(@tnss.score).to eq("0-15")
+        end
+    
+        it "hace que el marcador sea 15-15 después de que ambos ganen un punto" do
+            @tnss.give_point_to(:recibe)
+            @tnss.give_point_to(:saca)
+            expect(@tnss.score).to eq("15-15")
+        end
+    end
+   end
+```
+
+Ahora pasamos a ejecutar las pruebas y verificamos que efectivamente se pasaron todas las pruebas. Veremos ahora la immpresion de cada prueba respectivamente en verde.
+
+![](img/21.png)
+
+Además, se mencionan algunas pruebas adicionales que podríamos realizar, dado que nuestra clase TennisScorer ha sido diseñada de manera exhaustiva y está lista para abordar cualquier escenario posible. Por lo tanto, podríamos ejecutar todas las pruebas que se han implementado a continuación.
+
+![](img/22.png)
+
 
 
